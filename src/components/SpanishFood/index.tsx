@@ -58,22 +58,18 @@ const SpanishFood = () => {
     });
   };
 
-  // Remove item completely
   const handleRemoveFromCart = (name: string) => {
     setCart(prevCart => prevCart.filter(item => item.name !== name));
   };
 
-  // Calculate subtotal (items total)
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-  // Tax & Shipping (example values)
   const TAX_RATE = 0.07; // 7%
-  const SHIPPING_FEE = subtotal > 0 ? 5 : 0; // €5 shipping if cart not empty
+  const SHIPPING_FEE = subtotal > 0 ? 6 : 0; // €6 shipping if cart not empty
 
   const tax = subtotal * TAX_RATE;
   const total = subtotal + tax + SHIPPING_FEE;
 
-  // Checkout
   const handleCheckout = () => {
     alert(
       `Thank you! Your order total is €${total.toFixed(2)} (includes €${tax.toFixed(

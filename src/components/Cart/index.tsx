@@ -29,9 +29,8 @@ const Cart = ({items, onRemove, onIncrease, onDecrease, subtotal, tax, shipping,
 
   return (
     <div className="relative">
-     
       <button onClick={toggleDropdown} className="relative">
-        <FaCartPlus className="text-3xl text-white" />
+        <FaCartPlus data-testid= "icon" className="text-3xl text-white" />
         {items.length > 0 && (
           <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
             {items.reduce((acc, item) => acc + item.quantity, 0)}
@@ -41,7 +40,7 @@ const Cart = ({items, onRemove, onIncrease, onDecrease, subtotal, tax, shipping,
 
       {isOpen && (
         <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg z-50 p-4 text-amber-900">
-          <h3 className="text-lg font-semibold mb-2">Cart</h3>
+          <h3 className="text-lg font-semibold mb-2"> Cart </h3>
 
           {items.length === 0 ? (
             <p className="text-sm text-gray-600">Your cart is empty.</p>
