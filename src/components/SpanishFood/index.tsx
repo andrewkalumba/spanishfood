@@ -7,7 +7,6 @@ import spanishFoods, { SpanishFoodsProp } from "@/data/spanishData";
 
 type SpanishFoodItem = SpanishFoodsProp;
 
-// Extended Cart Item with quantity
 interface CartItem extends SpanishFoodItem {
   quantity: number;
 }
@@ -27,7 +26,6 @@ const SpanishFood = () => {
   }, [cart]);
 
   const handleAddToCart = (food: SpanishFoodItem) => {
-    console.log("clicked");
     setCart(prevCart => {
       const existingIndex = prevCart.findIndex(item => item.name === food.name);
       if (existingIndex !== -1) {
@@ -45,7 +43,7 @@ const SpanishFood = () => {
     });
   };
   // Increase quantity of item in cart
-  const handleIncreaseQuantity = (name: string) => {
+  const handleIncreaseQuantity  = (name: string) => {
     setCart(prevCart => {
       return prevCart.map(item => item.name === name ? { ...item, quantity: item.quantity + 1 } : item);
     });
@@ -80,7 +78,6 @@ const SpanishFood = () => {
 
   return (
     <div>
-      {/* Floating Cart */}
       <div className="fixed top-4 right-4 z-50">
         <Cart
           items={cart}
@@ -95,13 +92,12 @@ const SpanishFood = () => {
         />
       </div>
 
-      {/* Food List */}
       <div
         className="flex flex-col w-full justify-center items-center bg-cover bg-center"
         style={{ backgroundImage: `url("./hotel19.jpeg")` }}
       >
         {spanishFoods.map((food, index) => (
-          <div key={index} className="flex flex-col w-[80%] my-4">
+          <div data-testid="foodCard" key={index} className="flex flex-col w-[80%] my-4">
             <div className="flex gap-4 justify-center items-center w-full">
               <img src={food.image} alt={food.name} className="w-[30%] h-auto rounded-2xl" />
               <div className="text-center w-[40%] bg-black/75 p-4 rounded-2xl">

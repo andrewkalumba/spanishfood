@@ -28,7 +28,7 @@ const Cart = ({items, onRemove, onIncrease, onDecrease, subtotal, tax, shipping,
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   return (
-    <div className="relative">
+    <div data-testid="cart" className="relative">
       <button onClick={toggleDropdown} className="relative">
         <FaCartPlus data-testid= "icon" className="text-3xl text-white" />
         {items.length > 0 && (
@@ -76,7 +76,7 @@ const Cart = ({items, onRemove, onIncrease, onDecrease, subtotal, tax, shipping,
               <div className="border-t pt-2 mt-2 space-y-1 text-sm">
                 <div className="flex justify-between">
                   <span>Subtotal:</span>
-                  <span>€{subtotal.toFixed(2)}</span>
+                  <span data-testid="subTotalData">€{subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Tax (0.07):</span>
