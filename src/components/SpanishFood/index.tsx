@@ -27,23 +27,23 @@ const SpanishFood = () => {
   }, [cart]);
 
   const handleAddToCart = (food: SpanishFoodItem) => {
-  console.log("clicked");
-  setCart(prevCart => {
-    const existingIndex = prevCart.findIndex(item => item.name === food.name);
-    if (existingIndex !== -1) {
-      // Increase quantity
-      const updatedCart = [...prevCart];
-      updatedCart[existingIndex] = {
-        ...updatedCart[existingIndex],
-        quantity: updatedCart[existingIndex].quantity + 1,
-      };
-      return updatedCart;
-    } else {
-      // Add new item with quantity 1
-      return [...prevCart, { ...food, quantity: 1 }];
-    }
-  });
-};
+    console.log("clicked");
+    setCart(prevCart => {
+      const existingIndex = prevCart.findIndex(item => item.name === food.name);
+      if (existingIndex !== -1) {
+        // Increase quantity
+        const updatedCart = [...prevCart];
+        updatedCart[existingIndex] = {
+          ...updatedCart[existingIndex],
+          quantity: updatedCart[existingIndex].quantity + 1,
+        };
+        return updatedCart;
+      } else {
+        // Add new item with quantity 1
+        return [...prevCart, { ...food, quantity: 1 }];
+      }
+    });
+  };
   // Increase quantity of item in cart
   const handleIncreaseQuantity = (name: string) => {
     setCart(prevCart => {
@@ -54,7 +54,7 @@ const SpanishFood = () => {
   // Decrease quantity or remove if 1
   const handleDecreaseQuantity = (name: string) => {
     setCart(prevCart => {
-      return prevCart.map(item => item.name === name ? {...item, quantity: item.quantity - 1 } : item).filter(item => item.quantity > 0);
+      return prevCart.map(item => item.name === name ? { ...item, quantity: item.quantity - 1 } : item).filter(item => item.quantity > 0);
     });
   };
 
@@ -64,7 +64,7 @@ const SpanishFood = () => {
 
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
-  const TAX_RATE = 0.07; // 7%
+  const TAX_RATE = 0.07;
   const SHIPPING_FEE = subtotal > 0 ? 6 : 0; // €6 shipping if cart not empty
 
   const tax = subtotal * TAX_RATE;
@@ -72,9 +72,7 @@ const SpanishFood = () => {
 
   const handleCheckout = () => {
     alert(
-      `Thank you! Your order total is €${total.toFixed(2)} (includes €${tax.toFixed(
-        2
-      )} tax and €${SHIPPING_FEE.toFixed(2)} shipping).`
+      `Thank you! Your order total is €${total.toFixed(2)} (includes €${tax.toFixed(2)} tax and €${SHIPPING_FEE.toFixed(2)} shipping).`
     );
     setCart([]);
     localStorage.removeItem("spanishFoodCart");

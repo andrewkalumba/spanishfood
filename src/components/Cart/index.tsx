@@ -53,11 +53,11 @@ const Cart = ({items, onRemove, onIncrease, onDecrease, subtotal, tax, shipping,
                       <span>{item.name}</span>
                       <div className="flex items-center gap-1 mt-1">
                         <button onClick={() => onDecrease(item.name)}>
-                          <IoIosRemoveCircle className="text-red-500 hover:text-red-700 text-xl" />
+                          <IoIosRemoveCircle data-testid="decrease" className="text-red-500 hover:text-red-700 text-xl" />
                         </button>
                         <span className="px-2">{item.quantity}</span>
                         <button onClick={() => onIncrease(item.name)}>
-                          <IoIosAddCircle className="text-green-500 hover:text-green-700 text-xl" />
+                          <IoIosAddCircle  data-testid="increase" className="text-green-500 hover:text-green-700 text-xl" />
                         </button>
                       </div>
                     </div>
@@ -66,7 +66,7 @@ const Cart = ({items, onRemove, onIncrease, onDecrease, subtotal, tax, shipping,
                         €{(item.price * item.quantity).toFixed(2)}
                       </span>
                       <button onClick={() => onRemove(item.name)}>
-                        <IoMdClose className="text-red-500 hover:text-red-700 text-xl" />
+                        <IoMdClose data-testid = "close" className="text-red-500 hover:text-red-700 text-xl" />
                       </button>
                     </div>
                   </li>
