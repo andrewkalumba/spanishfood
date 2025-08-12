@@ -79,7 +79,7 @@ const Cart = ({items, onRemove, onIncrease, onDecrease, subtotal, tax, shipping,
                   <span>€{subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Tax (7%):</span>
+                  <span>Tax (0.07):</span>
                   <span>€{tax.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">

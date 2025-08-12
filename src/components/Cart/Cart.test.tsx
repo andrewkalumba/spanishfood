@@ -156,6 +156,7 @@ describe("Displays all the information when the cart is open", () => {
 
     test("if there is a checkout button", () => {
         const checkout = screen.getByText(/cash out/i)
+        expect(checkout).toBeInTheDocument()
     })
 
 })
