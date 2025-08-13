@@ -29,7 +29,6 @@ const SpanishFood = () => {
     setCart(prevCart => {
       const existingIndex = prevCart.findIndex(item => item.name === food.name);
       if (existingIndex !== -1) {
-        // Increase quantity
         const updatedCart = [...prevCart];
         updatedCart[existingIndex] = {
           ...updatedCart[existingIndex],
@@ -37,23 +36,17 @@ const SpanishFood = () => {
         };
         return updatedCart;
       } else {
-        // Add new item with quantity 1
         return [...prevCart, { ...food, quantity: 1 }];
       }
     });
   };
-  // Increase quantity of item in cart
+
   const handleIncreaseQuantity  = (name: string) => {
-    setCart(prevCart => {
-      return prevCart.map(item => item.name === name ? { ...item, quantity: item.quantity + 1 } : item);
-    });
+    setCart(prevCart => prevCart.map(item => item.name === name ? { ...item, quantity: item.quantity + 1 } : item));
   };
 
-  // Decrease quantity or remove if 1
   const handleDecreaseQuantity = (name: string) => {
-    setCart(prevCart => {
-      return prevCart.map(item => item.name === name ? { ...item, quantity: item.quantity - 1 } : item).filter(item => item.quantity > 0);
-    });
+    setCart(prevCart => prevCart.map(item => item.name === name ? { ...item, quantity: item.quantity - 1 } : item).filter(item => item.quantity > 0));
   };
 
   const handleRemoveFromCart = (name: string) => {
@@ -63,7 +56,7 @@ const SpanishFood = () => {
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   const TAX_RATE = 0.07;
-  const SHIPPING_FEE = subtotal > 0 ? 6 : 0; // €6 shipping if cart not empty
+  const SHIPPING_FEE = subtotal > 0 ? 6 : 0; // €6 
 
   const tax = subtotal * TAX_RATE;
   const total = subtotal + tax + SHIPPING_FEE;
