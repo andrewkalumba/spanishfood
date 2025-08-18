@@ -56,7 +56,7 @@ const SpanishFood = () => {
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   const TAX_RATE = 0.07;
-  const SHIPPING_FEE = subtotal > 0 ? 6 : 0; // €6 
+  const SHIPPING_FEE = subtotal > 0 ? 6 : 0;
 
   const tax = subtotal * TAX_RATE;
   const total = subtotal + tax + SHIPPING_FEE;
@@ -70,8 +70,8 @@ const SpanishFood = () => {
   };
 
   return (
-    <div>
-      <div className="fixed top-4 right-4 z-50">
+    <div data-testid="spanishInfo">
+      <div className=" fixed top-4 right-4 z-50">
         <Cart
           items={cart}
           onRemove={handleRemoveFromCart}
@@ -87,8 +87,7 @@ const SpanishFood = () => {
 
       <div
         className="flex flex-col w-full justify-center items-center bg-cover bg-center"
-        style={{ backgroundImage: `url("./hotel19.jpeg")` }}
-      >
+        style={{ backgroundImage: `url("./hotel19.jpeg")` }}>
         {spanishFoods.map((food, index) => (
           <div data-testid="foodCard" key={index} className="flex flex-col w-[80%] my-4">
             <div className="flex gap-4 justify-center items-center w-full">

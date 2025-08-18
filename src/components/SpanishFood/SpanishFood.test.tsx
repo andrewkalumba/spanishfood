@@ -26,14 +26,11 @@ describe("SpanishFood Integration Test", () => {
         const cartIcon = screen.getByTestId("icon");
         fireEvent.click(cartIcon);
 
-        // Scope to cart container (must exist in component)
         const insideTheCart = screen.getByTestId("cart");
 
-        // Find item row for that food inside the cart only
         const cartItemRow = within(insideTheCart).getByText(firstFoodItem.name).closest("li");
         expect(cartItemRow).not.toBeNull()!;
 
-        // Verify quantity is 2
         expect(within(cartItemRow!).getByText("2")).toBeInTheDocument();
 
         const expectedSubtotal = (firstFoodItem.price * 2).toFixed(2);

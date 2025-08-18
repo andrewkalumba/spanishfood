@@ -95,7 +95,7 @@ describe("Displays all the information when the cart is open", () => {
     })
 
     test("if quantity of item is included", () => {
-        const listItem = screen.getByText("pizza").closest("li")! //value is not null or undefined
+        const listItem = screen.getByText("pizza").closest("li")!
         const quantityInfo = within(listItem).getByText(/10/)
         expect(quantityInfo).toBeInTheDocument()
     })
