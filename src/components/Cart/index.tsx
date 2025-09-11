@@ -23,14 +23,17 @@ interface CartProp {
   onCheckout: () => void;
 }
 
-const Cart = ({items, onRemove, onIncrease, onDecrease, subtotal, tax, shipping, total, onCheckout}: CartProp) => {
+const Cart = ({ items, onRemove, onIncrease, onDecrease, subtotal, tax, shipping, total, onCheckout }: CartProp) => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen)
+  }
 
   return (
     <div data-testid="cart" className="relative">
       <button onClick={toggleDropdown} className="relative">
-        <FaCartPlus data-testid= "icon" className="text-3xl text-white" />
+        <FaCartPlus data-testid="icon" className="text-3xl text-white" />
         {items.length > 0 && (
           <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
             {items.reduce((acc, item) => acc + item.quantity, 0)}
@@ -57,7 +60,7 @@ const Cart = ({items, onRemove, onIncrease, onDecrease, subtotal, tax, shipping,
                         </button>
                         <span className="px-2">{item.quantity}</span>
                         <button onClick={() => onIncrease(item.name)}>
-                          <IoIosAddCircle  data-testid="increase" className="text-green-500 hover:text-green-700 text-xl" />
+                          <IoIosAddCircle data-testid="increase" className="text-green-500 hover:text-green-700 text-xl" />
                         </button>
                       </div>
                     </div>
@@ -66,7 +69,7 @@ const Cart = ({items, onRemove, onIncrease, onDecrease, subtotal, tax, shipping,
                         €{(item.price * item.quantity).toFixed(2)}
                       </span>
                       <button onClick={() => onRemove(item.name)}>
-                        <IoMdClose data-testid = "close" className="text-red-500 hover:text-red-700 text-xl" />
+                        <IoMdClose data-testid="close" className="text-red-500 hover:text-red-700 text-xl" />
                       </button>
                     </div>
                   </li>
