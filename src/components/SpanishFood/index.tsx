@@ -42,11 +42,21 @@ const SpanishFood = () => {
   };
 
   const handleIncreaseQuantity  = (name: string) => {
-    setCart(prevCart => prevCart.map(item => item.name === name ? { ...item, quantity: item.quantity + 1 } : item));
+    setCart(prevCart =>
+      prevCart.map(item =>
+        item.name === name ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
   };
 
   const handleDecreaseQuantity = (name: string) => {
-    setCart(prevCart => prevCart.map(item => item.name === name ? { ...item, quantity: item.quantity - 1 } : item).filter(item => item.quantity > 0));
+    setCart(prevCart =>
+      prevCart
+        .map(item =>
+          item.name === name ? { ...item, quantity: item.quantity - 1 } : item
+        )
+        .filter(item => item.quantity > 0)
+    );
   };
 
   const handleRemoveFromCart = (name: string) => {
@@ -63,7 +73,9 @@ const SpanishFood = () => {
 
   const handleCheckout = () => {
     alert(
-      `Thank you! Your order total is €${total.toFixed(2)} (includes €${tax.toFixed(2)} tax and €${SHIPPING_FEE.toFixed(2)} shipping).`
+      `Thank you! Your order total is €${total.toFixed(2)} (includes €${tax.toFixed(
+        2
+      )} tax and €${SHIPPING_FEE.toFixed(2)} shipping).`
     );
     setCart([]);
     localStorage.removeItem("spanishFoodCart");
@@ -71,7 +83,7 @@ const SpanishFood = () => {
 
   return (
     <div data-testid="spanishInfo">
-      <div className=" fixed top-4 right-4 z-50">
+      <div className="fixed top-4 right-4 z-50">
         <Cart
           items={cart}
           onRemove={handleRemoveFromCart}
@@ -87,15 +99,32 @@ const SpanishFood = () => {
 
       <div
         className="flex flex-col w-full justify-center items-center bg-cover bg-center"
-        style={{ backgroundImage: `url("./hotel19.jpeg")` }}>
+        style={{ backgroundImage: `url("./hotel19.jpeg")` }}
+      >
         {spanishFoods.map((food, index) => (
-          <div data-testid="foodCard" key={index} className="flex flex-col w-[80%] my-4">
-            <div className="flex gap-4 justify-center items-center w-full">
-              <img src={food.image} alt={food.name} className="w-[30%] h-auto rounded-2xl" />
-              <div className="text-center w-[40%] bg-black/75 p-4 rounded-2xl">
-                <div className="text-2xl mb-4 font-semibold text-white">{food.name}</div>
-                <div className="mb-1 text-gray-200">{food.description}</div>
-                <div className="text-lg font-medium text-green-300 mb-2">€{food.price.toFixed(2)}</div>
+          <div
+            data-testid="foodCard"
+            key={index}
+            className="flex flex-col md:flex-row w-[90%] md:w-[80%] my-4 rounded-2xl overflow-hidden bg-black/70 shadow-lg">
+            <div className="w-full md:w-[40%] flex justify-center items-center p-4">
+              <img
+                src={food.image}
+                alt={food.name}
+                className="w-[80%] md:w-full h-auto rounded-xl"
+              />
+            </div>
+
+            <div className="flex flex-col justify-center text-center md:text-left w-full md:w-[60%] p-6">
+              <div className="text-xl md:text-2xl mb-4 font-semibold text-white">
+                {food.name}
+              </div>
+              <div className="mb-2 text-sm md:text-base text-gray-200">
+                {food.description}
+              </div>
+              <div className="text-lg font-medium text-green-300 mb-3">
+                €{food.price.toFixed(2)}
+              </div>
+              <div className="flex justify-center md:justify-start">
                 <AddButton handleClick={() => handleAddToCart(food)} />
               </div>
             </div>
