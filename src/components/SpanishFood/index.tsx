@@ -99,8 +99,7 @@ const SpanishFood = () => {
 
       <div
         className="flex flex-col w-full justify-center items-center bg-cover bg-center"
-        style={{ backgroundImage: `url("./hotel19.jpeg")` }}
-      >
+        style={{ backgroundImage: `url("./hotel19.jpeg")` }}>
         {spanishFoods.map((food, index) => (
           <div
             data-testid="foodCard"
